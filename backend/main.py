@@ -27,14 +27,9 @@ app.add_middleware(
 # -------------------------------
 # DB CONNECTION
 # -------------------------------
-conn = psycopg2.connect(
-    dbname="Dodge_ai",
-    user="postgres",
-    password="1234",
-    host="localhost",
-    port="5432"
-)
-conn = psycopg2.connect(os.getenv("DATABASE_URL"))
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+conn = psycopg2.connect(DATABASE_URL, sslmode="require")
 
 # -------------------------------
 # GROQ CLIENT
