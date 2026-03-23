@@ -34,6 +34,7 @@ conn = psycopg2.connect(
     host="localhost",
     port="5432"
 )
+conn = psycopg2.connect(os.getenv("DATABASE_URL"))
 
 # -------------------------------
 # GROQ CLIENT
