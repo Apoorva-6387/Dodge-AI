@@ -1,13 +1,4 @@
-Bhai 🔥
-Ab main tumhare project ke liye **INTERVIEW-WINNING README.md** bana raha hoon
 
-👉 Ye copy karke GitHub me paste karna — ye hi tumhari **first impression** hai 💯
-
----
-
-# 📄 🚀 README.md (COPY PASTE FULL)
-
-````md id="readme001"
 # 🚀 Dodge AI - Intelligent SQL Query System
 
 An AI-powered system that converts natural language into SQL queries, detects broken business flows, visualizes relationships, and provides analytics — all in one platform.
