@@ -11,6 +11,10 @@ import {
 ChartJS.register(BarElement, CategoryScale, LinearScale);
 
 function App() {
+
+  // ✅ ADD THIS LINE (IMPORTANT)
+  const API = process.env.REACT_APP_API_URL;
+
   const [query, setQuery] = useState("");
   const [result, setResult] = useState(null);
   const [graphData, setGraphData] = useState([]);
@@ -18,8 +22,9 @@ function App() {
 
   const handleSearch = async () => {
     try {
-      // CHAT API
-      const res = await fetch("http://127.0.0.1:8000/chat", {
+
+      // ✅ UPDATED CHAT API
+      const res = await fetch(`${API}/chat`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -30,8 +35,8 @@ function App() {
       const data = await res.json();
       setResult(data);
 
-      //  GRAPH API
-      const graphRes = await fetch("http://127.0.0.1:8000/graph", {
+      // ✅ UPDATED GRAPH API
+      const graphRes = await fetch(`${API}/graph`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -42,13 +47,13 @@ function App() {
       const graph = await graphRes.json();
       setGraphData([...graph.nodes, ...graph.edges]);
 
-      // ANALYTICS API
-      const analyticsRes = await fetch("http://127.0.0.1:8000/analytics");
+      // ✅ UPDATED ANALYTICS API
+      const analyticsRes = await fetch(`${API}/analytics`);
       const analyticsData = await analyticsRes.json();
       setAnalytics(analyticsData);
 
     } catch (error) {
-      console.error(error);
+      console.error("Error:", error);
     }
   };
 
@@ -67,17 +72,14 @@ function App() {
   return (
     <div style={styles.page}>
 
-      {/*  Background */}
       <div style={styles.blob1}></div>
       <div style={styles.blob2}></div>
 
-      {/*  Stickers */}
       <div style={styles.sticker1}>💻</div>
       <div style={styles.sticker2}>📊</div>
       <div style={styles.sticker3}>🤖</div>
       <div style={styles.sticker4}>⚡</div>
 
-      {/* ✨ Particles */}
       <div style={styles.particle1}></div>
       <div style={styles.particle2}></div>
       <div style={styles.particle3}></div>
@@ -85,7 +87,6 @@ function App() {
       <div style={styles.container}>
         <h1 style={styles.title}>🚀 AI SQL Query System</h1>
 
-        {/* INPUT */}
         <div style={styles.inputBox}>
           <input
             type="text"
@@ -99,7 +100,6 @@ function App() {
           </button>
         </div>
 
-        {/* RESULT */}
         {result && (
           <div style={styles.resultBox}>
             <h3>✨ AI Response</h3>
@@ -109,7 +109,6 @@ function App() {
           </div>
         )}
 
-        {/* 📊 ANALYTICS */}
         {analytics && (
           <div style={styles.resultBox}>
             <h3>📊 Analytics Dashboard</h3>
@@ -118,7 +117,6 @@ function App() {
           </div>
         )}
 
-        {/* GRAPH */}
         <div style={styles.graphBox}>
           <h3>🌐 Data Relationship Graph</h3>
 
